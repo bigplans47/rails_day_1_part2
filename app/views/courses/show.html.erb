@@ -4,3 +4,19 @@
 <p><%= link_to "Delete", course_path(@course),
   :data=> {:confirm => "You sure?",
     :method => "delete"} %></p>
+
+<% if @course.tasks.any? %>
+  <ul>
+    <% @course.tasks.each do |task| %>
+      <li><%= task.description %> |
+        <%=link_to "Edit", edit_course_task_path(@course, task) %> |
+        <%=link_to "Delete", course_task_path(@course, task),
+          :data => {:confirm => "Are you sure?", :method => "delete"} %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tasks yet</p>
+<% end %>
+
+<p><%= link_to "Add a task", new_course_task_path(@course) %></p>

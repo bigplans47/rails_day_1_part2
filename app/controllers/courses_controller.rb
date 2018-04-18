@@ -17,7 +17,6 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    render :new
   end
 
   def create
